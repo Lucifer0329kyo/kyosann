@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<!-- ボタンCSSの参照先 http://www.htmq.com/csskihon/004.shtml -->
+	<style type="text/css">
+		.square_btn{
+			display: inline-block;
+			padding: 1em 3em;
+			text-decoration: underline #ff8c00;
+			background: #ff3028;/*ボタン色*/
+			color: #fff;
+			border-bottom: ridge 10px rgb(255, 125, 0, .8);
+			border-radius: 50px 100px 50px;
+		}
+		.square_btn:active {/*ボタンを押したとき*/
+			-ms-transform: translateY(4px);
+			-webkit-transform: translateY(4px);
+			transform: translateY(4px);/*下に動く*/
+			border-bottom: none;/*線を消す*/
+		}
+	</style>
+	<title>JavaScriptサンプル</title>
+</head>
+<body>
+<h1>JavaScriptおみくじ</h1>
+<p>1回200円</p>
+
+<script>
+var no_daikiti = 0;
+var no_kiti = 0;
+var no_tyuukiti = 0;
+var no_syoukiti = 0;
+var no_suekiti = 0;
+var no_kyou = 0;
+var no_daikyou = 0;
+function gatcha() {
+	var img = document.getElementById("card"); 
+	var number = Math.floor(7*Math.random());
+	if( number < 1 ) {
+		alert("おめでとう！");
+		img.src = "daikiti.png";
+		no_daikiti++;
+	} else if( number < 2 ) {
+		img.src = "kiti.png";
+		no_kiti++;
+	} else if( number < 3 ) {
+		img.src = "tyuukiti.png";
+		no_tyuukiti++;
+	} else if( number < 4 ) {
+		img.src = "syoukiti.png";
+		no_syoukiti++;
+	} else if( number <5  ) {
+		img.src = "suekiti.png";
+		no_suekiti++;
+	} else if( number < 6 ) {
+		img.src = "kyou.png";
+		no_kyou++;
+	} else {
+		img.src = "daikyou.png";
+		no_daikyou++;
+	}
+	var total = no_daikiti + no_kiti + no_tyuukiti + no_syoukiti + no_suekiti + no_kyou + no_daikyou;
+	document.getElementById("price").innerHTML = total*200+"円";
+	document.getElementById("no_daikiti").innerHTML = no_daikiti+"枚（確率"+Math.round(no_daikiti/total*100*100)/100+"％）";
+	document.getElementById("no_kiti").innerHTML = no_kiti+"枚（確率"+Math.round(no_kiti/total*100*100)/100+"％）";
+	document.getElementById("no_tyuukiti").innerHTML = no_tyuukiti+"枚（確率"+Math.round(no_tyuukiti/total*100*100)/100+"％）";
+	document.getElementById("no_syoukiti").innerHTML = no_syoukiti+"枚（確率"+Math.round(no_syoukiti/total*100*100)/100+"％）";
+	document.getElementById("no_suekiti").innerHTML = no_suekiti+"枚（確率"+Math.round(no_suekiti/total*100*100)/100+"％）";
+	document.getElementById("no_kyou").innerHTML = no_kyou+"枚（確率"+Math.round(no_kyou/total*100*100)/100+"％）";
+	document.getElementById("no_daikyou").innerHTML = no_daikyou+"枚（確率"+Math.round(no_daikyou/total*100*100)/100+"％）";
+	
+}
+</script>
+
+<div><img id="card" src="omikujiii.png" width="300" height="400"></div>
+
+<div><a href="#" class="square_btn" onclick="gatcha()">おみくじを引く！</a></div>
+
+<dl>
+	<dt>現在の料金</dt>
+	<dd id="price">0円</dd>
+	<dt>大吉の枚数（設定確率は14.28％）</dt>
+	<dd id="no_daikiti">0枚</dd>
+	<dt>吉の枚数（設定確率は14.28％）</dt>
+	<dd id="no_kiti">0枚</dd>
+	<dt>中吉の枚数（設定確率は14.28％）</dt>
+	<dd id="no_tyuukiti">0枚</dd>
+	<dt>小吉の枚数（設定確率は14.28％）</dt>
+	<dd id="no_syoukiti">0枚</dd>
+	<dt>末吉の枚数（設定確率は14.28％）</dt>
+	<dd id="no_suekiti">0枚</dd>
+	<dt>凶の枚数（設定確率は14.28％）</dt>
+	<dd id="no_kyou">0枚</dd>
+	<dt>大凶の枚数（設定確率は14.28％）</dt>
+	<dd id="no_daikyou">0枚</dd>	
+
+</dl>
+
+<p>端数の都合上合計が100%になりません</p>
+</body>
+</html>
+
